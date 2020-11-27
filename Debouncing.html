@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <button id="myid">ClickMe</button>
+  <script>
+    //addEventListener add it dynamically
+    // document.getElementById("myid").addEventListener("click", () => {
+    //   console.log("clicked");
+    // });
+
+    const debounce = (fn, delay) => {
+      let timeoutID;
+      //higher order function
+      return function (...args) {
+        if (timeoutID) {
+          clearTimeout(timeoutID);
+        }
+        timeoutID = setTimeout(() => {
+          fn(...args);
+        }, delay);
+      };
+    };
+
+    //addEventListener dynamically adding
+    //e stands for event
+    document.getElementById("myid").addEventListener(
+      "click",
+      debounce((e) => {
+        console.log("clicked");
+      }, 2000)
+    );
+  </script>
+</html>
